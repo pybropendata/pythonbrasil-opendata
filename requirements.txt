@@ -1,0 +1,7 @@
+streamlit==0.69.2
+plotly==4.11.0
+numpy==1.19.2
+matplotlib
+
+heroku3==4.2.3
+gunicorn==20.0.4
