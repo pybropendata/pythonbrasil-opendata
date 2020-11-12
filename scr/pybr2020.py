@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 
-from lib.plot import CreatePlot
+from libs.plot import CreatePlot
 
 def write():
     st.write("___________________________________")
