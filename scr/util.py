@@ -1,6 +1,7 @@
 import base64
 
 import pandas as pd
+import os
 import requests
 import streamlit as st
 from PIL import Image
@@ -14,6 +15,9 @@ def download_csv_file(csv_name):
     req = requests.get(
         f"https://raw.githubusercontent.com/pythonbrasil/dados/main/dados/python-brasil-2020/{csv_name}.csv"
     )
+    
+    if not os.path.exists('./files'):
+        os.makedirs('./files')    
     csv_name = f"./files/{csv_name}.csv"
     url_content = req.content
     with open(csv_name, "wb") as csv_file:
