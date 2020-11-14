@@ -1,13 +1,15 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 
 class CreatePlot:
     def __init__(self, sample_df):
         self.sample_df = sample_df
 
-    def categorical_count_bar_plot(self, categorical_column):
+    def categorical_count_bar_plot(self, categorical_column, percent=False):
         """
         Created using Plotly Bar Charts: https://plotly.com/python/bar-charts/.
 
@@ -15,21 +17,24 @@ class CreatePlot:
         :param categorical_column: The column with categorical values
         :return: The figure of the plot, ready to be showed.
         """
-        y_values = self.sample_df[categorical_column].value_counts().tolist()
 
-        x_values = self.sample_df[categorical_column].unique().tolist()
+        values = self.sample_df[categorical_column].value_counts().tolist()
+        values_perc = [round(value/ sum(values)*100,2) for value in values]
+        categories = self.sample_df[categorical_column].unique().tolist()
 
-        fig = px.bar(
-            data_frame=self.sample_df,
-            x=x_values,
-            y=y_values,
-            title=f"Contagem categorica utilizando a coluna {categorical_column}",
-        )
+        title = f"Valores em Percentual: {categorical_column}" if percent else f"Valores em Quantidade: {categorical_column}"
+        fig = go.Figure()
 
-        plt.figure(
-            figsize=(8, 4),
-            dpi=80,
-        )
+        if percent:
+            fig.add_trace(
+                go.Bar( x=values_perc,y=categories,name=f"{categorical_column}", marker_color="black",orientation='h'),
+            )
+        else:
+            fig.add_trace(
+                go.Bar( x=values,y=categories,name=f"{categorical_column}", marker_color="black",orientation='h'),
+            )
+            
+        fig.update_layout(title_text=f"{title}")
 
         return fig
 
