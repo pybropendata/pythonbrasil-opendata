@@ -1,5 +1,6 @@
 import pages.home
-import pages.tickets
+import pages.talks
+import pages.tutorials
 import streamlit as st
 import util
 
@@ -7,7 +8,8 @@ import util
 def main():
     PAGES = {
         "Início": pages.home,
-        "Inscrições": pages.tickets,
+        "Palestras": pages.talks,
+        "Tutoriais": pages.tutorials,
     }
 
     st.sidebar.title("Páginas")

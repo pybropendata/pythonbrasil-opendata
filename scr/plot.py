@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
-from plotly.subplots import make_subplots
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 class CreatePlot:
@@ -19,21 +19,37 @@ class CreatePlot:
         """
 
         values = self.sample_df[categorical_column].value_counts().tolist()
-        values_perc = [round(value/ sum(values)*100,2) for value in values]
+        values_perc = [round(value / sum(values) * 100, 2) for value in values]
         categories = self.sample_df[categorical_column].unique().tolist()
 
-        title = f"Valores em Percentual: {categorical_column}" if percent else f"Valores em Quantidade: {categorical_column}"
+        title = (
+            f"Valores em Percentual: {categorical_column}"
+            if percent
+            else f"Valores em Quantidade: {categorical_column}"
+        )
         fig = go.Figure()
 
         if percent:
             fig.add_trace(
-                go.Bar( x=values_perc,y=categories,name=f"{categorical_column}", marker_color="black",orientation='h'),
+                go.Bar(
+                    x=values_perc,
+                    y=categories,
+                    name=f"{categorical_column}",
+                    marker_color="black",
+                    orientation="h",
+                ),
             )
         else:
             fig.add_trace(
-                go.Bar( x=values,y=categories,name=f"{categorical_column}", marker_color="black",orientation='h'),
+                go.Bar(
+                    x=values,
+                    y=categories,
+                    name=f"{categorical_column}",
+                    marker_color="black",
+                    orientation="h",
+                ),
             )
-            
+
         fig.update_layout(title_text=f"{title}")
 
         return fig
