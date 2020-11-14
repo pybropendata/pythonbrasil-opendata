@@ -38,7 +38,7 @@ def write_page(page):
 
 def write_header():
     svg = svg_to_line('./assets/pylogo_50.svg')
-    st.write(f"{parse_svg_html(svg)} **Python Brasil 2020 - Dados Abertos**" , unsafe_allow_html=True)
+    st.write(f"{parse_svg_html(svg)} **Python Brasil 2020 - Dados Abertos** " , unsafe_allow_html=True)
 
 def write_title(body: str):
     """Uses st.write to write the title as f'Awesome Streamlit {body}'
