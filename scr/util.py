@@ -36,6 +36,10 @@ def write_page(page):
     page.write()
 
 
+def write_header():
+    svg = svg_to_line('./assets/pylogo_50.svg')
+    st.write(f"{parse_svg_html(svg)} **Python Brasil 2020 - Dados Abertos**" , unsafe_allow_html=True)
+
 def write_title(body: str):
     """Uses st.write to write the title as f'Awesome Streamlit {body}'
     - plus the awesome badge
@@ -45,20 +49,22 @@ def write_title(body: str):
     """
     st.write(f"# PyBr2020 - Dados Abertos {body} ")
 
+def parse_svg_html(svg):
+    b64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
+    return r'<img src="data:image/svg+xml;base64,%s"/>' % b64
 
 def render_svg(svg):
     """Renders the given svg string."""
-    b64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
-    html = r'<img src="data:image/svg+xml;base64,%s"/>' % b64
-    st.write(html, unsafe_allow_html=True)
+    st.write(parse_svg_html(svg), unsafe_allow_html=True)
 
-
-def render_svg_file(svg_file):
+def svg_to_line(svg_file):
     f = open(svg_file, "r")
     lines = f.readlines()
     line_string = "".join(lines)
-    render_svg(line_string)
+    return line_string
 
+def render_svg_file(svg_file):
+    render_svg(svg_to_line(svg_file))
 
 def render_img(img_file):
     image = Image.open(img_file)

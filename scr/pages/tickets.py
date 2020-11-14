@@ -5,6 +5,8 @@ from plot import CreatePlot
 
 
 def write():
+
+    util.write_header()
     st.markdown("---")
     util.write_title("- INSCRIÇÕES")
 
@@ -74,7 +76,8 @@ def plot_who(df):
     columns_who = ['Como você se define', 'Se define - Se outro, qual?',
         'Como você se identifica?', 'Se identifica - Se outro, qual?',
         'Faz parte da população T (pessoa transgênera, travesti)?',
-        'Orientação sexual', 'Orientação sexual - Se outro, qual?',
+        'Orientação sexual', 
+        #'Orientação sexual - Se outro, qual?',
         'Pessoa com necessidades específicas?',
         'Necessidades específicas - Se sim, qual?']
 
