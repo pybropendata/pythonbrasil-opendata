@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run pydata.py
+web: sh setup.sh && streamlit run scr/app.py

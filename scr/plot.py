@@ -1,5 +1,5 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import plotly.express as px
 
 
@@ -23,7 +23,7 @@ class CreatePlot:
             data_frame=self.sample_df,
             x=x_values,
             y=y_values,
-            title=f"Categorical Count Bar chart using column {categorical_column}",
+            title=f"Contagem categorica utilizando a coluna {categorical_column}",
         )
 
         plt.figure(
@@ -33,7 +33,9 @@ class CreatePlot:
 
         return fig
 
-    def histogram_plot(self, x_column, custom_n_bins=20, color=None, see_distribution=False):
+    def histogram_plot(
+        self, x_column, custom_n_bins=20, color=None, see_distribution=False
+    ):
         """
         Created using Plotly Histogram: https://plotly.com/python/histograms/.
 
@@ -49,14 +51,19 @@ class CreatePlot:
         """
         if see_distribution:
             fig = px.histogram(
-                self.sample_df, x=x_column, color=color,
-                marginal="box", nbins=custom_n_bins,
-                title=f"Histogram chart using column {x_column}"
+                self.sample_df,
+                x=x_column,
+                color=color,
+                marginal="box",
+                nbins=custom_n_bins,
+                title=f"Histogram chart using column {x_column}",
             )
 
         else:
             fig = px.histogram(
-                self.sample_df, x=x_column, color=color,
+                self.sample_df,
+                x=x_column,
+                color=color,
                 nbins=custom_n_bins,
                 title=f"Histogram chart using column {x_column}",
             )

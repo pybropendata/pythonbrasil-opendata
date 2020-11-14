@@ -1,0 +1,63 @@
+import base64
+
+import pandas as pd
+import requests
+import streamlit as st
+from PIL import Image
+
+
+def get_df_from_csv(csv_name):
+    return pd.read_csv(download_csv_file(csv_name), index_col=0)
+
+
+def download_csv_file(csv_name):
+    req = requests.get(
+        f"https://raw.githubusercontent.com/pythonbrasil/dados/main/dados/python-brasil-2020/{csv_name}.csv"
+    )
+    csv_name = f"./files/{csv_name}.csv"
+    url_content = req.content
+    with open(csv_name, "wb") as csv_file:
+        csv_file.write(url_content)
+    csv_file.close()
+    return csv_name
+
+
+def write_page(page):
+    """Writes the specified page/module
+    Our multipage app is structured into sub-files with a `def write()` function
+    Arguments:
+        page {module} -- A module with a 'def write():' function
+    """
+    # _reload_module(page)
+    page.write()
+
+
+def write_title(body: str):
+    """Uses st.write to write the title as f'Awesome Streamlit {body}'
+    - plus the awesome badge
+    - plus a link to the awesome-streamlit GitHub page
+    Arguments:
+        body {str} -- [description]
+    """
+    st.write(f"# PyBr2020 - Dados Abertos {body} ")
+
+
+def render_svg(svg):
+    """Renders the given svg string."""
+    b64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
+    html = r'<img src="data:image/svg+xml;base64,%s"/>' % b64
+    st.write(html, unsafe_allow_html=True)
+
+
+def render_svg_file(svg_file):
+    f = open(svg_file, "r")
+    lines = f.readlines()
+    line_string = "".join(lines)
+    render_svg(line_string)
+
+
+def render_img(img_file):
+    image = Image.open(img_file)
+    st.image(
+        image, caption="Logo colorido da Python Brasil 2020", use_column_width=True
+    )
