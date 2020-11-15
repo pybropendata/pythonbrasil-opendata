@@ -16,6 +16,13 @@ def main():
         "Discord": pages.discord,
     }
 
+    st.sidebar.write()
+
+    svg = util.svg_to_line("./assets/pylogo.svg")
+    st.sidebar.write(
+        f"{util.parse_svg_html(svg)}",
+        unsafe_allow_html=True,
+    )
     st.sidebar.title("Páginas")
     selection = st.sidebar.radio("", list(PAGES.keys()))
 
