@@ -35,7 +35,8 @@ class CreatePlot:
                     x=values_perc,
                     y=categories,
                     name=f"{categorical_column}",
-                    marker_color="black",
+                    #marker_color="black",
+                    marker={"color": list(range(-10, 20))},
                     orientation="h",
                 ),
             )
@@ -45,7 +46,8 @@ class CreatePlot:
                     x=values,
                     y=categories,
                     name=f"{categorical_column}",
-                    marker_color="black",
+                    #marker_color="black",
+                    marker={"color": list(range(-10, 20))},
                     orientation="h",
                 ),
             )
