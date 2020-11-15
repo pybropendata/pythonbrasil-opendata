@@ -23,9 +23,8 @@ def write():
     st.markdown(f"## - No Discord tivemos um total de **{(messages)}** enviadas ")
     st.markdown(f"## - Além disso, nas messas de bar e canais de audios tivemos **{(minutes)} minutos** de conversas ")
     st.markdown(f"## - Com um total de  **{hours} horas** de visualizações, o que dá **{days} dias** consecutivo assistindo tudo !!")
-    st.markdown(f"## **ISSO DÁ PRATICAMENTE {year} ANOS DE CONVERSAR SEM PARAR !!!**")
 
-    plor_discord(discord_text_df,discord_voice_df)
+    plot_discord(discord_text_df,discord_voice_df)
 
 
 def get_discord_text():
@@ -42,7 +41,7 @@ def get_discord_voice():
     
     return df[df['date'] >= datetime(2018, 11, 2).date()][['date','speaking_minutes']]
 
-def plor_discord(df_text,df_audio):
+def plot_discord(df_text,df_audio):
     SHOWVALUES = ["Quantidade", "Percentual"]
 
     st.title("Visualizar Valores em:")
