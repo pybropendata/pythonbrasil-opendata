@@ -51,7 +51,7 @@ def write_title(body: str):
     Arguments:
         body {str} -- [description]
     """
-    st.write(f"# PyBr2020 - Dados Abertos {body} ")
+    st.write(f"# PyBR2020 - Dados Abertos {body} ")
 
 
 def parse_svg_html(svg):

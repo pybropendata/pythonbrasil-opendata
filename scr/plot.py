@@ -54,44 +54,47 @@ class CreatePlot:
 
         return fig
 
-    def histogram_plot(
-        self, x_column, custom_n_bins=20, color=None, see_distribution=False
-    ):
+    def value_count_bar_plot(self, categorical_column, total_column, percent=False):
         """
-        Created using Plotly Histogram: https://plotly.com/python/histograms/.
+        Created using Plotly Bar Charts: https://plotly.com/python/bar-charts/.
 
-        Creates a histogram of the x_column. If another column goes in the color param,
-        it separates the data according to that column.
-
-        :param x_column: An df column to be used as x axis in the histogram.
-        :param custom_n_bins: The number of divisions in the x axis of the histogram.
-        :param color: An df column to be used to separate the data according to it.
-        :param see_distribution: Bool that if true shows the distribution of the values.
-
-        :return:  The figure of the plot, ready to be showed.
+        Creates a plot counting the values of a categorical column
+        :param categorical_column: The column with categorical values
+        :return: The figure of the plot, ready to be showed.
         """
-        if see_distribution:
-            fig = px.histogram(
-                self.sample_df,
-                x=x_column,
-                color=color,
-                marginal="box",
-                nbins=custom_n_bins,
-                title=f"Histogram chart using column {x_column}",
-            )
+        self.sample_df = self.sample_df.sort_values(by=total_column)
+        values = self.sample_df[total_column]
+        values_perc = [round(value / sum(values) * 100, 2) for value in values]
+        categories = self.sample_df[categorical_column]
 
-        else:
-            fig = px.histogram(
-                self.sample_df,
-                x=x_column,
-                color=color,
-                nbins=custom_n_bins,
-                title=f"Histogram chart using column {x_column}",
-            )
-
-        plt.figure(
-            figsize=(8, 4),
-            dpi=80,
+        title = (
+            f"Valores em Percentual: {total_column}"
+            if percent
+            else f"Valores em Quantidade: {total_column}"
         )
+        fig = go.Figure()
+
+        if percent:
+            fig.add_trace(
+                go.Bar(
+                    x=categories,
+                    y=values_perc,
+                    name=f"{categorical_column}",
+                    orientation="v",
+                    marker={"color": list(range(-10, 20))},
+                ),
+            )
+        else:
+            fig.add_trace(
+                go.Bar(
+                    x=categories,
+                    y=values,
+                    name=f"{categorical_column}",
+                    orientation="v",
+                    marker={"color": list(range(-10, 20))},
+                ),
+            )
+
+        fig.update_layout(title_text=f"{title}")
 
         return fig

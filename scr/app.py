@@ -1,6 +1,7 @@
 import pages.home
 import pages.talks
 import pages.tutorials
+import pages.youtube
 import streamlit as st
 import util
 
@@ -10,6 +11,7 @@ def main():
         "Início": pages.home,
         "Palestras": pages.talks,
         "Tutoriais": pages.tutorials,
+        "Lives Youtube": pages.youtube,
     }
 
     st.sidebar.title("Páginas")
