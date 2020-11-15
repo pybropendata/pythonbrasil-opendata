@@ -19,7 +19,7 @@ def write():
 
     st.markdown(f"## - Tivemos um total de **{int(views)}** visualizações ")
     st.markdown(
-        f"## - Com um total de  **{hours}** horas de visualizações, o  que dá **{days}** consecutivo assistindo tudo !!"
+        f"## - Com um total de  **{hours} horas**  de visualizações, o que dá **{days} dias** consecutivo assistindo tudo !!"
     )
     st.markdown(f"## **ISSO DÁ PRATICAMENTE {year} ANOS DE CONTÉUDO SEM PARAR !!!**")
 
