@@ -22,7 +22,7 @@ def write():
 
     st.markdown(f"## - No Discord tivemos um total de **{(messages)}** enviadas ")
     st.markdown(f"## - Além disso, nas messas de bar e canais de audios tivemos **{(minutes)} minutos** de conversas ")
-    st.markdown(f"## - Com um total de  **{hours} horas** de visualizações, o que dá **{days} dias** consecutivo assistindo tudo !!")
+    st.markdown(f"## - Com um total de  **{hours} horas** de visualizações, o que dá **{days} dias** consecutivo ouvindo tudo !!")
 
     plot_discord(discord_text_df,discord_voice_df)
 
