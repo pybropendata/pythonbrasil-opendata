@@ -18,7 +18,7 @@ def main():
 
     st.sidebar.write()
 
-    svg = util.svg_to_line("./assets/pylogo.svg")
+    svg = util.svg_to_line("./assets/pylogo75.svg")
     st.sidebar.write(
         f"{util.parse_svg_html(svg)}",
         unsafe_allow_html=True,
