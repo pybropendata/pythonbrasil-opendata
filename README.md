@@ -5,7 +5,7 @@ Como executar:
 
 ```bash
 pip install -r requirements.txt
-streamlit run scr/app.py
+streamlit run src/app.py
 ```
 
 Agradecimento:

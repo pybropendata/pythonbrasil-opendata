@@ -1,9 +1,11 @@
+import streamlit as st
+
+import pages.discord
+import pages.feedbacks
 import pages.home
 import pages.talks
 import pages.tutorials
 import pages.youtube
-import pages.discord
-import streamlit as st
 import util
 
 
@@ -14,6 +16,7 @@ def main():
         "Tutoriais": pages.tutorials,
         "Lives Youtube": pages.youtube,
         "Discord": pages.discord,
+        "Feedback": pages.feedbacks,
     }
 
     st.sidebar.write()
