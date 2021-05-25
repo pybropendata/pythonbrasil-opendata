@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-
 import util
 from plot import CreatePlot
 
@@ -12,6 +11,35 @@ def write():
     util.write_title("- PALESTRAS")
 
     tickest_df = get_event_tickets()
+    
+    col = "Em qual país você reside?"
+    tickest_df[col] = tickest_df[col].str.strip()
+    tickest_df.loc[tickest_df[col] == 'Por favor, que formulário mais sem sentido. Querem também saber que orientação sexual vou querer ter na próxima encarnação? Isso não tem sentido.',col] = 'N/A'
+    tickest_df.loc[tickest_df[col] == ',',col] = 'N/A'
+    tickest_df.loc[tickest_df[col] == 'PNR',col] = 'N/A'
+    tickest_df.loc[tickest_df[col] == 'Prefiro não responder.',col] = 'N/A'
+    tickest_df.loc[tickest_df[col] == 'Alemanha, Berlin',col] = 'Alemanha'
+    tickest_df.loc[tickest_df[col] == 'Canada',col] = 'Canadá'
+    tickest_df.loc[tickest_df[col] == 'Dublin, Irlanda',col] = 'Irlanda'
+    tickest_df.loc[tickest_df[col] == 'Ireland',col] = 'Irlanda'
+    tickest_df.loc[tickest_df[col] == 'irlanda',col] = 'Irlanda'
+    tickest_df.loc[tickest_df[col] == 'Italy',col] = 'Itália'
+    tickest_df.loc[tickest_df[col] == 'Mocambique',col] = 'Moçambique'
+    tickest_df.loc[tickest_df[col] == 'Países Baixo',col] = 'Países Baixos'
+    tickest_df.loc[tickest_df[col] == 'Perú',col] = 'Peru'
+    tickest_df.loc[tickest_df[col] == 'US',col] = 'EUA'
+    tickest_df.loc[tickest_df[col] == 'USA',col] = 'EUA'
+    tickest_df.loc[tickest_df[col] == 'Usa',col] = 'EUA'
+    tickest_df.loc[tickest_df[col] == 'Estados Unidos',col] = 'EUA'
+    tickest_df.loc[tickest_df[col] == 'United States',col] = 'EUA'
+    tickest_df.loc[tickest_df[col] == 'CZ',col] = 'República Tcheca'
+    tickest_df.loc[tickest_df[col] == 'United Kingdom',col] = 'Reino Unido'
+    tickest_df.loc[tickest_df[col] == 'colombia',col] = 'Colombia'
+    tickest_df.loc[tickest_df[col] == 'portugal',col] = 'Portugal'
+    tickest_df.loc[tickest_df[col] == 'PT',col] = 'Portugal'
+    tickest_df.loc[tickest_df[col] == 'thailand',col] = 'Tailandia'
+    tickest_df.loc[tickest_df[col] == 'France',col] = 'França'
+    tickest_df.loc[tickest_df[col] == 'Japao',col] = 'Japão'
 
     OPTIONS = ["Inscrições", "Quem", "Onde", "Python"]
 
