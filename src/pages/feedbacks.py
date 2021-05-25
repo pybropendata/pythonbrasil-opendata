@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-
 import util
 from plot import CreatePlot
 
@@ -22,7 +21,7 @@ def write():
 
 
 def get_event_feedbacks():
-    df = util.get_df_from_csv("feedbacks")
+    df = util.get_df_from_csv("feedbacks").reset_index()
     df = df.fillna("N/A")
 
     return df
@@ -50,15 +49,9 @@ def plot_who(df):
         "Se a Python Brasil 2021 for presencial, qual seria o maior impeditivo para você participar do evento?",
     ]
 
-    # colunas_abertas = [
-    #               'Se escolheu alguma das opções acima, detalhe os motivos abaixo.',
-    #               'Como podemos melhorar na próxima edição da Python Brasil?'
-    #              ]
-
     df_cat = df[colunas_categoricas].copy()
     df_multiplas = df[colunas_multiplas].copy()
-    # df_abertas = df[colunas_abertas].copy()
-
+    
     SHOWVALUES = ["Quantidade", "Percentual"]
 
     st.title("Visualizar Valores em:")
