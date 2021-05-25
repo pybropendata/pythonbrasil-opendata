@@ -6,4 +6,4 @@ format:
 	isort .
 	
 local_run:
-	streamlit run scr/app.py
+	streamlit run src/app.py
