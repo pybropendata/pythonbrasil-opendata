@@ -51,7 +51,7 @@ def write_title(body: str):
     Arguments:
         body {str} -- [description]
     """
-    st.write(f"# PyBR2020 - Dados Abertos {body} ")
+    st.write(f"# Dados Abertos {body} ")
 
 
 def parse_svg_html(svg):
@@ -75,8 +75,8 @@ def render_svg_file(svg_file):
     render_svg(svg_to_line(svg_file))
 
 
-def render_img(img_file):
+def render_img(img_file, year):
     image = Image.open(img_file)
     st.image(
-        image, caption="Logo colorido da Python Brasil 2020", use_column_width=True
+        image, caption="Logo colorido da Python Brasil %s" % year, use_column_width=True
     )
