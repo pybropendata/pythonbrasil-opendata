@@ -39,7 +39,7 @@ def write_page(page):
 def write_header():
     svg = svg_to_line("./assets/pylogo_50.svg")
     st.write(
-        f"{parse_svg_html(svg)} **Python Brasil 2020 - Dados Abertos**",
+        f"{parse_svg_html(svg)} **Python Brasil 2021 - Dados Abertos**",
         unsafe_allow_html=True,
     )
 
@@ -51,7 +51,7 @@ def write_title(body: str):
     Arguments:
         body {str} -- [description]
     """
-    st.write(f"# PyBR2020 - Dados Abertos {body} ")
+    st.write(f"# PyBR2021 - Dados Abertos {body} ")
 
 
 def parse_svg_html(svg):
@@ -78,5 +78,5 @@ def render_svg_file(svg_file):
 def render_img(img_file):
     image = Image.open(img_file)
     st.image(
-        image, caption="Logo colorido da Python Brasil 2020", use_column_width=True
+        image, caption="Logo colorido da Python Brasil 2021", use_column_width=True
     )

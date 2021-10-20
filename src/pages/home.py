@@ -5,4 +5,4 @@ import util
 
 def write():
     util.write_title("- Início")
-    util.render_img("./assets/logo_colorido.png")
+    util.render_img("./assets/pybr2021-ABREVIADO.png")
