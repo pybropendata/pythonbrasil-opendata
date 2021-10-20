@@ -1,0 +1,12 @@
+dark_blue = "#476088"
+yellow = "#FFC562"
+red = "#FF6D74"
+green = "#4FDDC3"
+light_blue = "#61A8E8"
+
+keynote e roda de conversa - #ffffff
+trilha Shirley Ann Jackson - #476088 (azul escuro)
+trilha Timnit Gebru - #ffc562 (amarelo)
+trilha Marie Van Brittan Brown - #ff6d74 (rosa)
+trilha Bonnie Prado Pinto - #4fddc3 (verde)
+trilha Angelica Ross - #61a8e8 (azul)
