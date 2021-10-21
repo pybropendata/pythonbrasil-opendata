@@ -1,0 +1,13 @@
+version: "3"
+services:
+  streamlit:
+    container_name: pybr_opendata
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    volumes:
+      - ./:/pybr_opendata/
+    ports:
+      - "8501:8501"
+    command: streamlit run src/app.py
