@@ -7,5 +7,5 @@ def write():
     util.render_img("./assets/pybr2021-logo-abreviado.png", "2021")
 
     st.markdown("---")
-    st.markdown(" **EM DESENVOLVIMENTO**")
+    st.markdown("**EM DESENVOLVIMENTO**")
     st.markdown("---")
