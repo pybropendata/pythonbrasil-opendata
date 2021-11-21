@@ -3,6 +3,8 @@ import streamlit as st
 import pages.discord
 import pages.feedbacks
 import pages.home
+import pages.py2020
+import pages.py2021
 import pages.talks
 import pages.tutorials
 import pages.youtube
@@ -10,8 +12,14 @@ import util
 
 
 def main():
-    PAGES = {
+
+    EVENTS = {
         "Início": pages.home,
+        "Pyhton Brasil 2020": pages.py2020,
+        "Pyhton Brasil 2021": pages.py2021
+    }
+
+    PAGES = {
         "Palestras": pages.talks,
         "Tutoriais": pages.tutorials,
         "Lives Youtube": pages.youtube,
@@ -26,13 +34,19 @@ def main():
         f"{util.parse_svg_html(svg)}",
         unsafe_allow_html=True,
     )
-    st.sidebar.title("Páginas")
-    selection = st.sidebar.radio("", list(PAGES.keys()))
 
-    page = PAGES[selection]
+    st.sidebar.title("Visualizar dados do evento")
+    event_select = st.sidebar.selectbox("", list(EVENTS.keys()))
+    event = EVENTS[event_select]
+    util.write_page(event)
 
-    with st.spinner(f"Carregando {selection} ..."):
-        util.write_page(page)
+
+    if event.has_ok:
+        st.sidebar.title("Páginas")
+        page_selection = st.sidebar.radio("", list(PAGES.keys()))
+        page = PAGES[page_selection]
+        with st.spinner(f"Carregando {page_selection} ..."):
+            util.write_page(page)
 
     st.sidebar.title("Contribua")
     st.sidebar.info(

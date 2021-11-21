@@ -6,7 +6,7 @@ format:
 	isort .
 	
 local_run:
-	@echo "Starting streamlit on docker, (localhost:8501)"
+	@echo "Starting streamlit on local, (localhost:8501)"
 	streamlit run src/app.py
 
 local_docker_build:
