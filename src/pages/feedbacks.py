@@ -4,7 +4,7 @@ import util
 from plot import CreatePlot
 
 
-def write():
+def write(year):
 
     util.write_header()
     st.markdown("---")
@@ -20,8 +20,8 @@ def write():
     plot_who(feedbacks_df)
 
 
-def get_event_feedbacks():
-    df = util.get_df_from_csv("feedbacks").reset_index()
+def get_event_feedbacks(year):
+    df = util.get_df_from_csv("feedbacks",year).reset_index()
     df = df.fillna("N/A")
 
     return df

@@ -4,13 +4,13 @@ import util
 from plot import CreatePlot
 
 
-def write():
+def write(year):
 
     util.write_header()
     st.markdown("---")
     util.write_title("- PALESTRAS")
 
-    tickest_df = get_event_tickets()
+    tickest_df = get_event_tickets(year)
     
     col = "Em qual país você reside?"
     tickest_df[col] = tickest_df[col].str.strip()
@@ -64,8 +64,8 @@ def write():
         st.write("Escolha uma opção")
 
 
-def get_event_tickets():
-    df = util.get_df_from_csv("inscrições-palestras")
+def get_event_tickets(year):
+    df = util.get_df_from_csv("inscrições-palestras",year)
 
     rename_columns = {
         "Orientação sexual:": "Orientação sexual",

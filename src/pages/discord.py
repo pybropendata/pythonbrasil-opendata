@@ -2,19 +2,18 @@ from datetime import datetime
 
 import pandas as pd
 import streamlit as st
-
 import util
 from plot import CreatePlot
 
 
-def write():
+def write(year):
 
     util.write_header()
     st.markdown("---")
     util.write_title("- DISCORD")
 
-    discord_text_df = get_discord_text()
-    discord_voice_df = get_discord_voice()
+    discord_text_df = get_discord_text(year)
+    discord_voice_df = get_discord_voice(year)
 
     messages = discord_text_df["messages"].sum()
     minutes = round(discord_voice_df["speaking_minutes"].sum(), 2)
@@ -33,8 +32,8 @@ def write():
     plot_discord(discord_text_df, discord_voice_df)
 
 
-def get_discord_text():
-    df = util.get_df_from_csv("discord-atividade-por-texto").reset_index()
+def get_discord_text(year):
+    df = util.get_df_from_csv("discord-atividade-por-texto",year).reset_index()
 
     df["date"] = (
         pd.to_datetime(df["interval_start_timestamp"])
@@ -45,8 +44,8 @@ def get_discord_text():
     return df[df["date"] >= datetime(2018, 11, 2).date()][["date", "messages"]]
 
 
-def get_discord_voice():
-    df = util.get_df_from_csv("discord-atividade-por-voz").reset_index()
+def get_discord_voice(year):
+    df = util.get_df_from_csv("discord-atividade-por-voz",year).reset_index()
 
     df["date"] = (
         pd.to_datetime(df["interval_start_timestamp"])

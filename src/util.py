@@ -7,24 +7,26 @@ import streamlit as st
 from PIL import Image
 
 
-def get_df_from_csv(csv_name):
-    return pd.read_csv(download_csv_file(csv_name), index_col=0)
+def get_df_from_csv(csv_name,year):
+    return pd.read_csv(download_csv_file(csv_name,year), index_col=0)
 
 
-def download_csv_file(csv_name):
-    req = requests.get(
-        f"https://raw.githubusercontent.com/pythonbrasil/dados/main/dados/python-brasil-2020/{csv_name}.csv"
-    )
+def download_csv_file(csv_name,year):
+    try:
+        req = requests.get(
+            f"https://raw.githubusercontent.com/pythonbrasil/dados/main/dados/python-brasil-{year}/{csv_name}.csv"
+        )
 
-    if not os.path.exists("./files"):
-        os.makedirs("./files")
-    csv_name = f"./files/{csv_name}.csv"
-    url_content = req.content
-    with open(csv_name, "wb") as csv_file:
-        csv_file.write(url_content)
-    csv_file.close()
-    return csv_name
-
+        if not os.path.exists("./files"):
+            os.makedirs("./files")
+        csv_name = f"./files/{csv_name}.csv"
+        url_content = req.content
+        with open(csv_name, "wb") as csv_file:
+            csv_file.write(url_content)
+        csv_file.close()
+        return csv_name
+    except:
+        return None
 
 def write_page(page):
     """Writes the specified page/module

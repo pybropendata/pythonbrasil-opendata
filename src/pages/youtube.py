@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-
 import util
 from plot import CreatePlot
 
@@ -27,8 +26,8 @@ def write():
     plot_youtube(lives_df)
 
 
-def get_lives_tutorials():
-    df = util.get_df_from_csv("youtube-videos")
+def get_lives_tutorials(year):
+    df = util.get_df_from_csv("youtube-videos",year)
 
     df["Tag"] = df["Video title"].str.split(" ").str[0].replace(" ", "")
 
