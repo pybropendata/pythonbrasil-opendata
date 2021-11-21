@@ -14,9 +14,9 @@ import util
 def main():
 
     EVENTS = {
-        "Início": pages.home,
-        "Pyhton Brasil 2020": pages.py2020,
-        "Pyhton Brasil 2021": pages.py2021
+        "Início": (pages.home,None),
+        "Pyhton Brasil 2020": (pages.py2020,2020),
+        "Pyhton Brasil 2021": (pages.py2021,2021),
     }
 
     PAGES = {
@@ -38,15 +38,15 @@ def main():
     st.sidebar.title("Visualizar dados do evento")
     event_select = st.sidebar.selectbox("", list(EVENTS.keys()))
     event = EVENTS[event_select]
-    util.write_page(event)
+    util.write_page(event[0])
 
 
-    if event.has_ok:
+    if event[0].has_ok:
         st.sidebar.title("Páginas")
         page_selection = st.sidebar.radio("", list(PAGES.keys()))
         page = PAGES[page_selection]
         with st.spinner(f"Carregando {page_selection} ..."):
-            util.write_page(page)
+            util.write_page(page,year=event[1])
 
     st.sidebar.title("Contribua")
     st.sidebar.info(

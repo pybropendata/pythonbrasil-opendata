@@ -15,6 +15,10 @@ def write(year):
     discord_text_df = get_discord_text(year)
     discord_voice_df = get_discord_voice(year)
 
+    if discord_text_df.empty:
+        st.write("EM DESENVOLVIMENTO")
+        return None
+        
     messages = discord_text_df["messages"].sum()
     minutes = round(discord_voice_df["speaking_minutes"].sum(), 2)
     hours = round(minutes / 60, 2)
@@ -33,7 +37,12 @@ def write(year):
 
 
 def get_discord_text(year):
-    df = util.get_df_from_csv("discord-atividade-por-texto",year).reset_index()
+    data = util.get_df_from_csv("discord-atividade-por-texto",year)
+
+    if not data:
+        return pd.DataFrame();
+        
+    df = pd.read_csv(data, index_col=0).reset_index()
 
     df["date"] = (
         pd.to_datetime(df["interval_start_timestamp"])
@@ -45,7 +54,12 @@ def get_discord_text(year):
 
 
 def get_discord_voice(year):
-    df = util.get_df_from_csv("discord-atividade-por-voz",year).reset_index()
+    data = util.get_df_from_csv("discord-atividade-por-voz",year)
+
+    if not data:
+        return pd.DataFrame();
+        
+    df = pd.read_csv(data, index_col=0).reset_index()
 
     df["date"] = (
         pd.to_datetime(df["interval_start_timestamp"])
