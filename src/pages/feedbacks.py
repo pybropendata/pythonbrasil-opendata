@@ -4,14 +4,18 @@ import util
 from plot import CreatePlot
 
 
-def write():
+def write(year):
 
     util.write_header()
     st.markdown("---")
     util.write_title("- FEEDBACKS")
 
-    feedbacks_df = get_event_feedbacks()
+    feedbacks_df = get_event_feedbacks(year)
 
+    if feedbacks_df.empty:
+        st.write("EM DESENVOLVIMENTO")
+        return None
+        
     total = feedbacks_df.shape[0]
     st.markdown(
         f"## Tivemos um total de **{total}** respostas ao formulário de feedback!!!"
@@ -20,8 +24,14 @@ def write():
     plot_who(feedbacks_df)
 
 
-def get_event_feedbacks():
-    df = util.get_df_from_csv("feedbacks").reset_index()
+def get_event_feedbacks(year):
+    data = util.get_df_from_csv("feedbacks",year)
+
+    if not data:
+        return pd.DataFrame();
+        
+    df = pd.read_csv(data, index_col=0).reset_index()
+
     df = df.fillna("N/A")
 
     return df

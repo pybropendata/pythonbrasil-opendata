@@ -7,33 +7,38 @@ import streamlit as st
 from PIL import Image
 
 
-def get_df_from_csv(csv_name):
-    return pd.read_csv(download_csv_file(csv_name), index_col=0)
+def get_df_from_csv(csv_name,year):
+    data = download_csv_file(csv_name,year)
+    if data: return data
+    return None
 
 
-def download_csv_file(csv_name):
-    req = requests.get(
-        f"https://raw.githubusercontent.com/pythonbrasil/dados/main/dados/python-brasil-2020/{csv_name}.csv"
-    )
+def download_csv_file(csv_name,year):
+    try:
+        req = requests.get(
+            f"https://raw.githubusercontent.com/pythonbrasil/dados/main/dados/python-brasil-{year}/{csv_name}.csv"
+        )
 
-    if not os.path.exists("./files"):
-        os.makedirs("./files")
-    csv_name = f"./files/{csv_name}.csv"
-    url_content = req.content
-    with open(csv_name, "wb") as csv_file:
-        csv_file.write(url_content)
-    csv_file.close()
-    return csv_name
+        if req.status_code == 404: return None
+        if not os.path.exists("./files"):
+            os.makedirs("./files")
+        csv_name = f"./files/{csv_name}-{year}.csv"
+        url_content = req.content
+        with open(csv_name, "wb") as csv_file:
+            csv_file.write(url_content)
+        csv_file.close()
+        return csv_name
+    except:
+        return None
 
-
-def write_page(page):
+def write_page(page,year=None):
     """Writes the specified page/module
     Our multipage app is structured into sub-files with a `def write()` function
     Arguments:
         page {module} -- A module with a 'def write():' function
     """
     # _reload_module(page)
-    page.write()
+    page.write(year)
 
 
 def write_header():

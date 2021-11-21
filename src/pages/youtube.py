@@ -1,17 +1,19 @@
 import pandas as pd
 import streamlit as st
-
 import util
 from plot import CreatePlot
 
 
-def write():
+def write(year):
 
     util.write_header()
     st.markdown("---")
     util.write_title("- LIVES YOUTUBE")
 
-    lives_df = get_lives_tutorials()
+    lives_df = get_lives_tutorials(year)
+    if lives_df.empty:
+        st.write("EM DESENVOLVIMENTO")
+        return None
 
     views = lives_df["Views"].sum()
     hours = round(lives_df["Watch time (hours)"].sum(), 2)
@@ -27,8 +29,13 @@ def write():
     plot_youtube(lives_df)
 
 
-def get_lives_tutorials():
-    df = util.get_df_from_csv("youtube-videos")
+def get_lives_tutorials(year):
+    data = util.get_df_from_csv("youtube-videos",year)
+ 
+    if not data:
+        return pd.DataFrame();
+        
+    df = pd.read_csv(data, index_col=0)
 
     df["Tag"] = df["Video title"].str.split(" ").str[0].replace(" ", "")
 
@@ -54,7 +61,13 @@ def get_lives_tutorials():
         "Video title",
     ] = "[PyBr2020] Trilha PEP404 - Quinta-feira - Dia 05/11 #pybr2020"
 
-    df = df[df["Tag"] == "[PyBr2020]"][
+    df.loc[
+        df["Video title"]
+        == "[PyBr2021] Trilha Timnit Gebru - Terça-feira - Dia 12/10 -2- #PyBr2021",
+        "Video title",
+    ] = "[PyBr2021] Trilha Timnit Gebru - Terça-feira - Dia 12/10 - #PyBr20210"
+
+    df = df[df["Tag"] == f"[PyBr{year}]"][
         ["Video title", "Views", "Watch time (hours)", "Watch time (days)"]
     ].copy()
 

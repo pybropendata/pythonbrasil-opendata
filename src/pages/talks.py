@@ -4,14 +4,17 @@ import util
 from plot import CreatePlot
 
 
-def write():
+def write(year):
 
     util.write_header()
     st.markdown("---")
     util.write_title("- PALESTRAS")
 
-    tickest_df = get_event_tickets()
-    
+    tickest_df = get_event_tickets(year)
+
+    if tickest_df.empty:
+        return None
+
     col = "Em qual país você reside?"
     tickest_df[col] = tickest_df[col].str.strip()
     tickest_df.loc[tickest_df[col] == 'Por favor, que formulário mais sem sentido. Querem também saber que orientação sexual vou querer ter na próxima encarnação? Isso não tem sentido.',col] = 'N/A'
@@ -64,9 +67,15 @@ def write():
         st.write("Escolha uma opção")
 
 
-def get_event_tickets():
-    df = util.get_df_from_csv("inscrições-palestras")
+def get_event_tickets(year):
+    data = util.get_df_from_csv("inscrições-palestras",year)
 
+    if not data:
+        st.write("EM DESENVOLVIMENTO")
+        return pd.DataFrame();
+        
+    df = pd.read_csv(data, index_col=0)
+    
     rename_columns = {
         "Orientação sexual:": "Orientação sexual",
         "Se outro, qual?": "Se define - Se outro, qual?",

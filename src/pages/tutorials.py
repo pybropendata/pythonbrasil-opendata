@@ -1,17 +1,20 @@
 import pandas as pd
 import streamlit as st
-
 import util
 from plot import CreatePlot
 
 
-def write():
+def write(year):
 
     util.write_header()
     st.markdown("---")
     util.write_title("- TUTORIAIS")
 
-    tutorials_df = get_event_tutorials()
+    tutorials_df = get_event_tutorials(year)
+
+    if tutorials_df.empty:
+        st.write("EM DESENVOLVIMENTO")
+        return None
 
     total = tutorials_df.shape[0]
     st.markdown(f"## Tivemos um total de **{total}** inscrições para os tutorias !!!")
@@ -19,8 +22,14 @@ def write():
     plot_who(tutorials_df)
 
 
-def get_event_tutorials():
-    df = util.get_df_from_csv("inscrições-tutoriais")
+def get_event_tutorials(year):
+    data = util.get_df_from_csv("inscrições-tutoriais",year)
+
+    if not data:
+        return pd.DataFrame();
+        
+    df = pd.read_csv(data, index_col=0)
+
     rename_columns = {
         "Orientação sexual:": "Orientação sexual",
         "Se outro, qual?": "Se define - Se outro, qual?",
