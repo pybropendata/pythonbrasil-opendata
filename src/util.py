@@ -44,7 +44,7 @@ def write_page(page,year=None):
 def write_header():
     svg = svg_to_line("./assets/pylogo_50.svg")
     st.write(
-        f"{parse_svg_html(svg)} **Python Brasil 2020 - Dados Abertos**",
+        f"{parse_svg_html(svg)} **Python Brasil - Dados Abertos**",
         unsafe_allow_html=True,
     )
 
