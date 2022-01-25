@@ -5,6 +5,7 @@ import pages.feedbacks
 import pages.home
 import pages.py2020
 import pages.py2021
+import pages.speakers
 import pages.talks
 import pages.tutorials
 import pages.youtube
@@ -22,6 +23,7 @@ def main():
     PAGES = {
         "Palestras": pages.talks,
         "Tutoriais": pages.tutorials,
+        "Ministrantes": pages.speakers,
         "Lives Youtube": pages.youtube,
         "Discord": pages.discord,
         "Feedback": pages.feedbacks,
