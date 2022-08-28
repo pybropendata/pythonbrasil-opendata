@@ -1,30 +1,29 @@
 import streamlit as st
 
-import pages.discord
-import pages.feedbacks
-import pages.home
-import pages.py2020
-import pages.py2021
-import pages.talks
-import pages.tutorials
-import pages.youtube
+import lib.discord
+import lib.feedbacks
+import lib.home
+import lib.py2020
+import lib.py2021
+import lib.talks
+import lib.tutorials
+import lib.youtube
 import util
 
 
 def main():
-
     EVENTS = {
-        "Início": (pages.home,None),
-        "Pyhton Brasil 2020": (pages.py2020,2020),
-        "Pyhton Brasil 2021": (pages.py2021,2021),
+        "Início": (lib.home,None),
+        "Pyhton Brasil 2020": (lib.py2020,2020),
+        "Pyhton Brasil 2021": (lib.py2021,2021),
     }
 
     PAGES = {
-        "Palestras": pages.talks,
-        "Tutoriais": pages.tutorials,
-        "Lives Youtube": pages.youtube,
-        "Discord": pages.discord,
-        "Feedback": pages.feedbacks,
+        "Palestras": lib.talks,
+        "Tutoriais": lib.tutorials,
+        "Lives Youtube": lib.youtube,
+        "Discord": lib.discord,
+        "Feedback": lib.feedbacks,
     }
 
     st.sidebar.write()
