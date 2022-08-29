@@ -7,19 +7,21 @@ import streamlit as st
 from PIL import Image
 
 
-def get_df_from_csv(csv_name,year):
-    data = download_csv_file(csv_name,year)
-    if data: return data
+def get_df_from_csv(csv_name, year):
+    data = download_csv_file(csv_name, year)
+    if data:
+        return data
     return None
 
 
-def download_csv_file(csv_name,year):
+def download_csv_file(csv_name, year):
     try:
         req = requests.get(
             f"https://raw.githubusercontent.com/pythonbrasil/dados/main/dados/python-brasil-{year}/{csv_name}.csv"
         )
 
-        if req.status_code == 404: return None
+        if req.status_code == 404:
+            return None
         if not os.path.exists("./files"):
             os.makedirs("./files")
         csv_name = f"./files/{csv_name}-{year}.csv"
@@ -31,7 +33,8 @@ def download_csv_file(csv_name,year):
     except:
         return None
 
-def write_page(page,year=None):
+
+def write_page(page, year=None):
     """Writes the specified page/module
     Our multipage app is structured into sub-files with a `def write()` function
     Arguments:
