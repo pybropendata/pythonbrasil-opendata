@@ -1,32 +1,31 @@
 import streamlit as st
 
-import pages.discord
-import pages.feedbacks
-import pages.home
-import pages.py2020
-import pages.py2021
-import pages.speakers
-import pages.talks
-import pages.tutorials
-import pages.youtube
+import menu.discord
+import menu.feedbacks
+import menu.home
+import menu.py2020
+import menu.py2021
+import menu.speakers
+import menu.talks
+import menu.tutorials
+import menu.youtube
 import util
 
 
 def main():
-
     EVENTS = {
-        "Início": (pages.home,None),
-        "Pyhton Brasil 2020": (pages.py2020,2020),
-        "Pyhton Brasil 2021": (pages.py2021,2021),
+        "Início": (menu.home, None),
+        "Pyhton Brasil 2020": (menu.py2020, 2020),
+        "Pyhton Brasil 2021": (menu.py2021, 2021),
     }
 
     PAGES = {
-        "Palestras": pages.talks,
-        "Tutoriais": pages.tutorials,
-        "Ministrantes": pages.speakers,
-        "Lives Youtube": pages.youtube,
-        "Discord": pages.discord,
-        "Feedback": pages.feedbacks,
+        "Palestras": menu.talks,
+        "Tutoriais": menu.tutorials,
+        "Ministrantes": menu.speakers,
+        "Lives Youtube": menu.youtube,
+        "Discord": menu.discord,
+        "Feedback": menu.feedbacks,
     }
 
     st.sidebar.write()
@@ -42,13 +41,12 @@ def main():
     event = EVENTS[event_select]
     util.write_page(event[0])
 
-
     if event[0].has_ok:
         st.sidebar.title("Páginas")
         page_selection = st.sidebar.radio("", list(PAGES.keys()))
         page = PAGES[page_selection]
         with st.spinner(f"Carregando {page_selection} ..."):
-            util.write_page(page,year=event[1])
+            util.write_page(page, year=event[1])
 
     st.sidebar.title("Contribua")
     st.sidebar.info(
