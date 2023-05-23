@@ -3,4 +3,4 @@ plotly==4.12.0
 pandas==1.1.4
 matplotlib==3.3.3
 gunicorn==20.0.4
-requests==2.25.0
+requests==2.31.0
