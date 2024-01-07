@@ -1,6 +1,6 @@
-streamlit==1.10.0
-plotly==4.12.0
-pandas==1.1.4
-matplotlib==3.3.3
-gunicorn==20.0.4
-requests==2.25.0
+streamlit==1.29.0
+plotly==5.18.0
+pandas==2.1.4
+matplotlib==3.8.2
+gunicorn==21.2.0
+requests==2.31.0
