@@ -2,5 +2,5 @@ streamlit==1.37.0
 plotly==5.18.0
 pandas==2.1.4
 matplotlib==3.8.2
+requests==2.32.4
 gunicorn==23.0.0
-requests==2.32.0
