@@ -1,4 +1,3 @@
-version: "3"
 services:
   streamlit:
     container_name: pybr_opendata

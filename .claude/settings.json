@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/bin/python --version)",
+      "Bash(.venv/bin/pip list *)"
+    ],
+    "additionalDirectories": [
+      "/Users/gbellon/workspaces/pythonbrasil-opendata/.venv"
+    ]
+  }
+}

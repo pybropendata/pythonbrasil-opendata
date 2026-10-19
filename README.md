@@ -11,18 +11,21 @@ No aplicativo Streamlit desenvolvido a partir deste repositório, trazemos os da
 
 ## Requisitos
 
-- Python 3.8 ou superior
+- Python 3.9 ou superior (testado com 3.12)
 - _Streamlit_
 - _Pandas_
 - _Requests_
 - _Plotly_
+- _Matplotlib_
+
+As versões exatas das dependências estão fixadas em [requirements.txt](requirements.txt).
 
 ## Como executar
 
 1. Clone este repositório
 
     ```bash
-    git clone https://github.com/seu_usuario/pythonbrasil-opendata.git
+    git clone https://github.com/pybropendata/pythonbrasil-opendata.git
 
     cd pythonbrasil-opendata
     ```
@@ -30,14 +33,14 @@ No aplicativo Streamlit desenvolvido a partir deste repositório, trazemos os da
 2. Crie um ambiente virtual
 
     ```bash
-    python -m venv .venv
+    python3 -m venv .venv
     ```
 
 3. Ative o ambiente virtual
 
     ```bash
-    source venv/bin/activate  # Para Linux/Mac
-    venv/Scripts/activate  # Para Windows
+    source .venv/bin/activate  # Linux/Mac
+    .venv\Scripts\activate     # Windows (cmd/PowerShell)
     ```
 
 4. Instale as dependências
@@ -51,6 +54,8 @@ No aplicativo Streamlit desenvolvido a partir deste repositório, trazemos os da
     ```bash
     streamlit run src/app.py
     ```
+
+    O app ficará disponível em http://localhost:8501. Alternativamente, use `make local_run` ou `make local_docker_run` (Docker).
 
 ## Agradecimento
 

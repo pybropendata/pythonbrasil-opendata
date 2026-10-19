@@ -1,12 +1,8 @@
-FROM python:3.9-slim-buster
-
-RUN apt-get update -y \
-    && apt-get install gcc -y \
-    && apt-get clean
+FROM python:3.12-slim
 
 COPY requirements.txt /pybr_opendata/requirements.txt
 
 WORKDIR /pybr_opendata/
 
-RUN pip install --upgrade pip
-RUN pip install -r /pybr_opendata/requirements.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
